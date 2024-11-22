@@ -58,7 +58,7 @@ docker exec -it fbc2e2b732c1 psql -U emi -d blog
 
 ```bash
 # -U <nombre_usuario> -d <nombre_base_de_datos>
-psq1l -U emi -d blog
+psql -U emi -d blog
 ```
 
 ### Comandos útlies de postgres
