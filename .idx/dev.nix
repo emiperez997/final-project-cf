@@ -35,9 +35,9 @@
         default.openFiles = [ ".idx/dev.nix" ];
       };
 
-      # onStart = {
-      #   git-pull = "git pull";
-      # };
+      onStart = {
+        git-pull = "git pull";
+      };
     };
   };
 }
