@@ -4,6 +4,7 @@
   packages = [
     pkgs.openssl.dev
     pkgs.nodejs_latest
+    pkgs.yarn
   ];
 
   env = { };
@@ -21,6 +22,8 @@
       "humao.rest-client"
       "Supermaven.supermaven"
       "bmewburn.vscode-intelephense-client"
+      "Prisma.prisma"
+      "ms-azuretools.vscode-docker"
     ];
 
     previews = {
