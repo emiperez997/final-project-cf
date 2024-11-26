@@ -1,0 +1,3 @@
+### GET categories
+
+GET http://localhost:5000/api/categories

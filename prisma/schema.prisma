@@ -25,9 +25,7 @@ enum user_role {
 }
 
 model post {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String @id @default(uuid())
   title       String
   description String
   content     String
@@ -35,28 +33,26 @@ model post {
   authorId   String
   author     user            @relation(fields: [authorId], references: [id])
   categories post_category[]
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
 
   @@unique([authorId, title])
 }
 
 model category {
-  id          String          @id @default(uuid())
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  name        String
-  description String
-  posts       post_category[]
+  id        String          @id @default(uuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  name      String          @unique
+  posts     post_category[]
 }
 
 model post_category {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
   postId     String
   categoryId String
 
   post     post     @relation(fields: [postId], references: [id])
   category category @relation(fields: [categoryId], references: [id])
 
-  @@unique([postId, categoryId])
+  @@id([postId, categoryId])
 }

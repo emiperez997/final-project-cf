@@ -17,6 +17,8 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
     let message = 'Database error';
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
 
+    console.log(exception);
+
     switch (exception.code) {
       case 'P2002':
         message = 'Unique constraint failed on the fields.';

@@ -2,7 +2,7 @@
 
 GET http://localhost:5000/api/users
 
-### POST user
+### POST user 1
 
 POST http://localhost:5000/api/users
 Content-Type: application/json
@@ -11,8 +11,19 @@ Content-Type: application/json
     "username": "john_doe",
     "fullName": "John Doe",
     "email": "john@gmail.com",
-    "password": "123456",
-    "role": "admin"
+    "password": "123456"
+}
+
+### POST user 2
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "username": "jane_doe",
+    "fullName": "Jane Doe",
+    "email": "jane@gmail.com",
+    "password": "123456"
 }
 
 ### GET user
@@ -21,11 +32,12 @@ GET http://localhost:5000/api/users/2826846b-c799-4664-801a-8ffb3bb13ba6
 
 ### PATCH user
 
-PATCH  http://localhost:5000/api/users/2826846b-c799-4664-801a-8ffb3bb13ba6
+PATCH  http://localhost:5000/api/users/52bd87fd-b149-4b67-a5f8-8e5b8d1ba8e6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2YzM1YzI3LWQzNzAtNGY0Yi1iMGRlLWRhNjc1NGU5ZjQ4MCIsImVtYWlsIjoiam9obkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzI2NDkyMjQsImV4cCI6MTczMjY1MjgyNH0.VHwxFZT84nIdkzKA6HLHtffwJD_qvOHzKA8EnhodFXo
 Content-Type: application/json
 
 {
-    "fullName": "John New Doe"
+    "fullName": "Jane Doe"
 }
 
 ### PATCH user role
@@ -48,5 +60,15 @@ Content-Type: application/json
 
 {
     "email": "john@gmail.com",
+    "password": "123456"
+}
+
+### POST login 2
+
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "jane@gmail.com",
     "password": "123456"
 }

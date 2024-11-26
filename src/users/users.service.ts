@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -32,7 +33,15 @@ export class UsersService {
   }
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        full_name: true,
+        role: true,
+      },
+    });
   }
 
   async findOne(id: string) {
@@ -88,6 +97,10 @@ export class UsersService {
 
     if (!user) {
       throw new NotFoundException('User not found');
+    }
+
+    if (user.role === role) {
+      throw new BadRequestException('User already has the role');
     }
 
     return this.prisma.user.update({

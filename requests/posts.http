@@ -1,0 +1,43 @@
+### GET posts
+
+GET http://localhost:5000/api/posts
+
+### POST posts
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyYmQ4N2ZkLWIxNDktNGI2Ny1hNWY4LThlNWI4ZDFiYThlNiIsImVtYWlsIjoiamFuZUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjY1MzA4NSwiZXhwIjoxNzMyNjU2Njg1fQ.N1MyIeSKQONwIXHmyiPIkf4mCSwDzltX9ND_tzpFPOE
+
+{
+  "title": "Big news",
+  "description": "Google has been acquired by Facebook",
+  "content": "Probably you won't believe it, but it's true... Google has been acquired by Facebook. The deal was closed last week and the amount was not disclosed. I hope you dont believe it, because it's not true. This is just a test post to show how to create a new post using Prisma.",
+  "categories": [
+    "tech",
+    "news"
+  ]
+}
+
+
+### GET post
+
+GET http://localhost:5000/api/posts/9127ffaa-16f4-4c49-9ac4-a1dd4f3895f7
+
+### PATCH post
+
+PATCH http://localhost:5000/api/posts/05e44988-5b64-4a8b-9d10-c437d803e20c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyYmQ4N2ZkLWIxNDktNGI2Ny1hNWY4LThlNWI4ZDFiYThlNiIsImVtYWlsIjoiamFuZUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjY1MzA4NSwiZXhwIjoxNzMyNjU2Njg1fQ.N1MyIeSKQONwIXHmyiPIkf4mCSwDzltX9ND_tzpFPOE
+Content-Type: application/json
+
+{
+  "title": "Big Wild News",
+  "categories": [
+    "tech",
+    "fun"
+  ]
+}
+
+### DELETE post
+
+DELETE http://localhost:5000/api/posts/9127ffaa-16f4-4c49-9ac4-a1dd4f3895f7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2YzM1YzI3LWQzNzAtNGY0Yi1iMGRlLWRhNjc1NGU5ZjQ4MCIsImVtYWlsIjoiam9obkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzI2NTUwODYsImV4cCI6MTczMjY1ODY4Nn0.SWxsEPN9w2O680CFyn8GRAbyFi7umnkdw4gv-6iv69I
