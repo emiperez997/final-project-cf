@@ -1,0 +1,52 @@
+### GET users
+
+GET http://localhost:5000/api/users
+
+### POST user
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "username": "john_doe",
+    "fullName": "John Doe",
+    "email": "john@gmail.com",
+    "password": "123456",
+    "role": "admin"
+}
+
+### GET user
+
+GET http://localhost:5000/api/users/2826846b-c799-4664-801a-8ffb3bb13ba6
+
+### PATCH user
+
+PATCH  http://localhost:5000/api/users/2826846b-c799-4664-801a-8ffb3bb13ba6
+Content-Type: application/json
+
+{
+    "fullName": "John New Doe"
+}
+
+### PATCH user role
+
+PATCH  http://localhost:5000/api/users/26c35c27-d370-4f4b-b0de-da6754e9f480/role
+Content-Type: application/json
+
+{
+    "role": "user"
+}
+
+### DELETE user
+
+DELETE http://localhost:5000/api/users/2826846b-c799-4664-801a-8ffb3bb13ba6
+
+### POST login
+
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "john@gmail.com",
+    "password": "123456"
+}

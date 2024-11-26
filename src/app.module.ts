@@ -4,11 +4,20 @@ import { AppService } from './app.service';
 import { AdminModule } from './admin/admin.module';
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AdminModule, PostsModule, UsersModule, AuthModule, CommonModule],
+  imports: [
+    ConfigModule.forRoot(),
+    PrismaModule,
+    AdminModule,
+    PostsModule,
+    UsersModule,
+    CommonModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

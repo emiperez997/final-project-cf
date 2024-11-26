@@ -6,8 +6,8 @@ export class LoginDto {
   email: string;
 
   @IsString()
-  @Length(8, 20, {
-    message: 'Password must be between 8 and 20 characters',
+  @Length(6, 20, {
+    message: 'Password must be between 6 and 20 characters',
   })
   password: string;
 }
