@@ -49,12 +49,20 @@ export class UsersService {
       where: {
         id,
       },
+
       select: {
         id: true,
         username: true,
         email: true,
         full_name: true,
         role: true,
+        posts: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+          },
+        },
       },
     });
 

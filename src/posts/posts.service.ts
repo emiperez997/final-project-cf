@@ -7,6 +7,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PrismaService } from '@/prisma/prisma.service';
 import { IUserActive } from '@/common/interfaces/user-active.interface';
+import { FilterPostsDto } from './dto/filter-post.dto';
 
 @Injectable()
 export class PostsService {
@@ -14,6 +15,80 @@ export class PostsService {
 
   findAll() {
     return this.prisma.post.findMany({
+      select: {
+        title: true,
+        description: true,
+        author: {
+          select: {
+            full_name: true,
+            email: true,
+          },
+        },
+        categories: {
+          select: {
+            category: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  async search(query: FilterPostsDto) {
+    const where: any = {};
+
+    const filters = [
+      { key: 'title', options: { contains: query.title, mode: 'insensitive' } },
+      {
+        key: 'description',
+        options: { contains: query.description, mode: 'insensitive' },
+      },
+      {
+        key: 'content',
+        options: { contains: query.content, mode: 'insensitive' },
+      },
+      {
+        key: 'author',
+        options: {
+          full_name: {
+            contains: query.author,
+            mode: 'insensitive',
+          },
+          email: {
+            contains: query.author,
+            mode: 'insensitive',
+          },
+        },
+      },
+      {
+        key: 'category',
+        options: {
+          some: {
+            category: {
+              name: {
+                contains: query.category,
+                mode: 'insensitive',
+              },
+            },
+          },
+        },
+      },
+    ];
+
+    filters.forEach((filter) => {
+      if (query[filter.key]) {
+        where[filter.key === 'category' ? 'categories' : filter.key] =
+          filter.options;
+      }
+    });
+
+    console.log(where);
+
+    return this.prisma.post.findMany({
+      where,
       include: {
         author: {
           select: {

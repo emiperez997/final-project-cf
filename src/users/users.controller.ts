@@ -19,7 +19,9 @@ import { AuthGuard } from '@/common/guards/auth.guard';
 import { Auth } from '@/common/decorators/auth.decorator';
 import { ActiveUser } from '@/common/decorators/active-user.decorator';
 import { IUserActive } from '@/common/interfaces/user-active.interface';
+import { ApiBearerAuth, ApiSchema, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -29,17 +31,13 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Post()
-  create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Patch(':id')
+  @ApiBearerAuth()
   @Auth(user_role.admin, user_role.user)
   update(
     @Param('id') id: string,
@@ -54,6 +52,7 @@ export class UsersController {
   }
 
   @Patch(':id/role')
+  @ApiBearerAuth()
   @Auth(user_role.admin)
   updateRole(
     @Param('id') id: string,
@@ -68,6 +67,8 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
+  @Auth(user_role.admin)
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
@@ -75,5 +76,10 @@ export class UsersController {
   @Post('login')
   login(@Body(ValidationPipe) loginDto: LoginDto) {
     return this.usersService.login(loginDto);
+  }
+
+  @Post('register')
+  register(@Body(ValidationPipe) createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 }

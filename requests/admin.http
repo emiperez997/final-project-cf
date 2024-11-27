@@ -1,0 +1,7 @@
+### GET users
+
+GET http://localhost:5000/api/admin/users
+
+### GET user
+
+GET http://localhost:5000/api/admin/users/1
