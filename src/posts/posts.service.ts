@@ -16,6 +16,7 @@ export class PostsService {
   findAll() {
     return this.prisma.post.findMany({
       select: {
+        id: true,
         title: true,
         description: true,
         author: {
