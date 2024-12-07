@@ -5,10 +5,18 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 import express from 'express';
+import path from 'path';
 
 async function bootstrap() {
   const server = express();
   const app = await NestFactory.create(AppModule);
+
+  server.use(
+    '/swagger-ui',
+    express.static(
+      path.join(__dirname, '..', 'node_modules', 'swagger-ui-dist'),
+    ),
+  );
 
   app.useGlobalFilters(new PrismaClientExceptionFilter());
 
@@ -37,7 +45,11 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('docs', app, document, {
+    customCssUrl: '/swagger-ui/swagger-ui.css',
+    customJs: '/swagger-ui/swagger-ui-bundle.js',
+    customJsStr: '/swagger-ui/swagger-ui-standalone-preset.js',
+  });
 
   await app.listen(process.env.PORT ?? 5000);
 
