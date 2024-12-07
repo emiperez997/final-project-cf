@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     }
   ],
-  "buildCommand": "yarn build",
+  "buildCommand": "yarn build && npx prisma generate",
   "installCommand": "yarn install",
   "routes": [{ "src": "/(.*)", "dest": "dist/main.js" }]
 }
